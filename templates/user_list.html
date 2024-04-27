@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Users
+{% endblock %}
+
+{% block content %}
+
+<h1 class="user-heading">Users</h1>
+
+<ul class="users-list"> 
+    {% for user in users %}
+    <li class="user-info">
+        <a href="/users/{{user.id}}">
+            <div class="img-wrapper">
+                <img class="profile-img" src={{user.image_url}} alt=""> 
+            </div>
+            <p> {{user.first_name}} {{user.last_name}}</p>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="/users/new">Add a new user</a>
+
+{% endblock %}

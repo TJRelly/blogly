@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+.user-heading, h2, a {
+    padding-left: .5rem;
+}
+
+input {
+    padding: .25rem .5rem;
+}
+
+.user-info {
+    gap: 1rem;
+    padding: .5rem;
+    list-style: none;
+}
+
+.user-info a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.img-wrapper {
+    position: relative;
+    width: 70px;
+    overflow: hidden;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
+
+.user-details {
+    padding: .5rem;
+}
+
+.user-details img {
+    width: 25rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  padding: .5rem;
+  gap: 1rem; 
+}
+
+form button {
+    align-self: end;
+}
+
+.save-cancel {
+    width: fit-content;
+    padding: 0;
+    align-self: end;
+}
+
+.edit-delete {
+   width: 25rem;
+   display: flex;
+   gap: .5rem;
+}
+
+.edit-delete form {
+    width: fit-content;
+    padding: 0;
+}
+
