@@ -6,11 +6,11 @@ Users
 
 {% block content %}
 
-<h1 class="user-heading">Users</h1>
+<h1 class="p-2">Users</h1>
 
 <ul class="users-list"> 
     {% for user in users %}
-    <li class="user-info">
+    <li class="user-list">
         <a href="/users/{{user.id}}">
             <div class="img-wrapper">
                 <img class="profile-img" src={{user.image_url}} alt=""> 
