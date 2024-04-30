@@ -6,12 +6,12 @@ New Post Form
 
 {% block content %}
 
-<h1 class="p-2">Edit Post for {{user.first_name}} {{user.last_name}}</h1>
+<h1 class="p-2">Edit Post for {{post.users.first_name}} {{post.users.last_name}}</h1>
 <form action="/posts/{{post.id}}/edit" method="POST">
     <input type="text" name="title" placeholder="Title">
     <textarea type="text" name="content" placeholder="Content" row="10"></textarea>
     <div class="add-cancel">
-        <a href="/users/{{user.id}}" class="btn btn-outline-success cancelBtn">Cancel</a>
+        <a href="/users/{{post.users.id}}" class="btn btn-outline-success cancelBtn">Cancel</a>
         <button type="submit" class="btn btn-success">Save</button>
     </div> 
 </form>

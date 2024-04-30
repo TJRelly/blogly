@@ -13,7 +13,7 @@ berry = User(first_name = "Halle", last_name = "Berry", image_url = "https://i.p
 depp = User(first_name = "Johnny", last_name = "Depp", image_url = "https://m.media-amazon.com/images/M/MV5BOTBhMTI1NDQtYmU4Mi00MjYyLTk5MjEtZjllMDkxOWY3ZGRhXkEyXkFqcGdeQXVyNzI1NzMxNzM@._V1_.jpg")
 union = User(first_name = "Gabrielle", last_name = "Union", image_url = "https://www.usmagazine.com/wp-content/uploads/2023/03/Gabrielle-Union-Feature.jpg?w=800&h=1421&crop=1&quality=86&strip=all")
 
-db.session.add_all([hanks, washington, berry, depp, union])
+db.session.add_all([washington, berry, depp, union, hanks])
 db.session.commit()
 
 # Create some sample posts

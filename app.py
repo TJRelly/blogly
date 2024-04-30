@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, redirect, request
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, get_name_title
 
 app = Flask(__name__)
 app.app_context().push()
@@ -84,13 +84,14 @@ def edit_user(user_id):
 def delete_user(user_id):
     """deletes a user"""
     
-    posts = Post.query.filter(Post.user_id == user_id).all()
+    posts = Post.query.filter_by(user_id = user_id).all()
     
     for post in posts:
         db.session.delete(post)
     
-    User.query.filter_by(id = user_id).delete()
-
+    user = User.query.get(user_id)
+    
+    db.session.delete(user)
     db.session.commit()
     
     return redirect(f'/')
@@ -133,9 +134,7 @@ def edit_post_form(post_id):
     
     post = Post.query.get_or_404(post_id)
     
-    user = User.query.get_or_404(post.user.id)
-    
-    return render_template('post_edit_form.html', post=post, user=user)
+    return render_template('post_edit_form.html', post=post)
 
 @app.route('/posts/<post_id>/edit', methods=["POST"])
 def edit_post(post_id):
@@ -156,7 +155,7 @@ def delete_post(post_id):
     """Deletes a user"""
     
     post = Post.query.get_or_404(post_id)
-    user_id = post.user.id
+    user_id = post.users.id
     
     Post.query.filter_by(id = post_id).delete()
 

@@ -19,6 +19,8 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     image_url = db.Column(db.String, nullable=False, default='https://cdn-icons-png.flaticon.com/512/3135/3135715.png')
     
+    post = db.relationship('Post', backref='users')
+    
     def __repr__(self):
         user = self
         return f"<User id={user.id} first_name= {user.first_name} last_name= {user.last_name} img_url={user.image_url}>"
@@ -34,8 +36,15 @@ class Post(db.Model):
     created_at = db.Column(db.TIMESTAMP, nullable=False, default=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     
-    user = db.relationship('User', backref='posts')
-    
     def __repr__(self):
         post = self
-        return f"<Post id={post.id} title= {post.title} content= {post.content} created_at={post.created_at} user{post.user.last_name}>"
+        return f"<Post id={post.id} title= {post.title} content= {post.content} created_at={post.created_at} user= {post.users.first_name} {post.users.last_name}>"
+    
+# last name, first name, title of post
+def get_name_title():
+    posts = db.session.query(User, Post).join(Post).all()
+    
+    for user, post in posts:
+        print(user.first_name, user.last_name, post.title)
+    
+    
