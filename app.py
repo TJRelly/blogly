@@ -153,7 +153,7 @@ def edit_post(post_id):
 
 @app.route('/posts/<post_id>/delete', methods=["POST"])
 def delete_post(post_id):
-    """deletes a user"""
+    """Deletes a user"""
     
     post = Post.query.get_or_404(post_id)
     user_id = post.user.id
