@@ -1,1 +1,3 @@
 # blogly
+
+flask blog app
