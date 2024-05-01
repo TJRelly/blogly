@@ -6,18 +6,30 @@ Post
 
 {% block content %}
 
-<h3 class="p-2">{{post.title}}</h3>
+<div class="p-2">
+    <h3 class="p-2">{{post.title}}</h3>
 
-<p class="p-2 w-75">{{post.content}}</p>
+    <p class="p-2 w-75">{{post.content}}</p>
+    
+    <div class="bottom-btns">
+        <div class="edit-delete p-2">
+            <a href="/posts/{{post.id}}/edit" class="btn btn-primary">Edit</a>
+            <form action="/posts/{{post.id}}/delete" method="POST">
+                <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger">
+            </form>
+        </div>
+        <a href="/users/{{post.users.id}}">More from {{post.users.first_name}} {{post.users.last_name}}</a> <span class="p-2">Created on {{time}}</span>
+        <!-- Display tags for posts -->
+        {% if post.tags %}
+            <ul class="post-tags px-2">
+                <li class="font-weight-bold">Tags: </li>
+                {% for tag in post.tags %}
+                <li><a href="/tags/{{tag.id}}" class="btn btn-primary btn-sm py-0 px-1 text-capitalize font-italic font-weight-bold">{{tag.name}}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-<div class="bottom-btns">
-    <div class="edit-delete p-2">
-        <a href="/posts/{{post.id}}/edit" class="btn btn-primary">Edit</a>
-        <form action="/posts/{{post.id}}/delete" method="POST">
-            <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger">
-        </form>
     </div>
-    <a href="/users/{{post.users.id}}">More from {{post.users.first_name}} {{post.users.last_name}}</a>
 </div>
 
 {% endblock %}

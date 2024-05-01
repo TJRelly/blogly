@@ -49,7 +49,7 @@ form {
   flex-direction: column;
   width: 30rem;
   padding: .5rem;
-  gap: 1rem; 
+  gap: 1rem;
 }
 
 textarea {
@@ -85,5 +85,14 @@ form button {
 .add-post {
     margin: .5rem;
 }
+
+.post-tags {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    font-size: 1.2rem;
+}
+
 
 

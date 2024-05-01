@@ -5,17 +5,35 @@ New Post Form
 {% endblock %}
 
 {% block content %}
+<div class="p-2">
+    <h1 class="p-2">Add Post for {{user.first_name}} {{user.last_name}}</h1>
+    <form action="/users/{{user.id}}/posts/new" method="POST">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea type="text" name="content" placeholder="Content" row="10" required></textarea>
+        <!-- display tag list -->
+        <section class="checkboxes">
+            {% if tags %}
+                {% for tag in tags %}
+                <div class="form-check check">
+                    <input class="form-check-input" type="checkbox" value={{tag.name}} id={{tag.name}} name="tags">
+                    <label class="form-check-label" for={{tag.name}}>
+                      {{tag.name}}
+                    </label>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </section>
 
-<h1 class="p-2">Add Post for {{user.first_name}} {{user.last_name}}</h1>
-<form action="/users/{{user.id}}/posts/new" method="POST">
-    <input type="text" name="title" placeholder="Title" required>
-    <textarea type="text" name="content" placeholder="Content" row="10" required></textarea>
-    <div class="add-cancel">
-        <a href="/users/{{user.id}}" class="btn btn-info cancelBtn">Cancel</a>
-        <button type="submit" class="btn btn-success">Add</button>
-    </div> 
-</form>
-
-<a href="/">Back to users</a>
+        <div class="add-cancel">
+            <a href="/users/{{user.id}}" class="btn btn-info cancelBtn">Cancel</a>
+            <button type="submit" class="btn btn-success">Add</button>
+        </div> 
+    </form>
+    
+    <div class="d-flex flex-column">
+        <a href="/tags">Edit tags</a>
+        <a href="/">Back to users</a>
+    </div>
+</div>
 
 {% endblock %}

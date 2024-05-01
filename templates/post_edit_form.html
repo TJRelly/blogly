@@ -8,14 +8,40 @@ New Post Form
 
 <h1 class="p-2">Edit Post for {{post.users.first_name}} {{post.users.last_name}}</h1>
 <form action="/posts/{{post.id}}/edit" method="POST">
-    <input type="text" name="title" placeholder="Title">
-    <textarea type="text" name="content" placeholder="Content" row="10"></textarea>
+    <input type="text" name="title" value="{{post.title}}">
+    <textarea type="text" name="content" rows="5">{{post.content}}</textarea>
+    <!-- display tag list -->
+    <section class="checkboxes">
+        {% if tags %}
+            {% for tag in tags %}
+                {% if tag in post.tags %}
+                <div class="form-check check">
+                    <input class="form-check-input" type="checkbox" value={{tag.name}} id={{tag.name}} name="tags" checked>
+                    <label class="form-check-label" for={{tag.name}}>
+                  {{tag.name}}
+                    </label>
+                </div>
+                {% else %}
+                <div class="form-check check">
+                    <input class="form-check-input" type="checkbox" value={{tag.name}} id={{tag.name}} name="tags">
+                    <label class="form-check-label" for={{tag.name}}>
+                  {{tag.name}}
+                    </label>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </section>
+
     <div class="add-cancel">
         <a href="/users/{{post.users.id}}" class="btn btn-outline-success cancelBtn">Cancel</a>
         <button type="submit" class="btn btn-success">Save</button>
     </div> 
 </form>
 
-<a href="/">Back to users</a>
+<div class="d-flex flex-column">
+    <a href="/tags">Edit tags</a>
+    <a href="/">Back to users</a>
+</div>
 
 {% endblock %}
