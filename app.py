@@ -127,7 +127,6 @@ def show_post(post_id):
     """Shows posts using id"""
     
     post = Post.query.get_or_404(post_id)
-    
     time = post.created_at.strftime(f"%a %b %d %Y, %-I:%M %p")
     
     return render_template('post.html', post=post, time=time)
