@@ -109,7 +109,6 @@ def add_post(user_id):
     content = request.form["content"]
     
     user = User.query.get_or_404(user_id)
-    
     new_post = Post(title=title, content=content, user_id=user.id)
     db.session.add(new_post)
     
