@@ -97,7 +97,6 @@ def show_post_form(user_id):
     """Shows form to add post to user"""
     
     user = User.query.get_or_404(user_id)
-    
     tags = Tag.query.all()
     
     return render_template('post_form.html', user=user, tags=tags)
